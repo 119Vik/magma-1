@@ -52,20 +52,6 @@ pipeline {
     timestamps()
     ansiColor('xterm')
     lock(cn_ci_resource)
-    // gitLabConnection('OAI GitLab')
-    // gitlabBuilds(builds: [
-    //   "Activate-AGW-VM",
-    //   "Build-Run-AGW1",
-    //   //"Build-Orchestrator",
-    //   //"Run-Orchestrator",
-    //   "Activate-Test-VM",
-    //   "Test-AGW1-noS11",
-    //   "Activate-Traffic-VM",
-    //   "Start-Traffic-Server0",
-    //   "Build-Run-AGW1-w-S11",
-    //   "Start-Traffic-Server1",
-    //   "Test-AGW1-w-S11"
-    // ])
   }
 
   stages {
@@ -97,7 +83,8 @@ pipeline {
       steps {
         script {
             // sh "git clone https://github.com/magma/magma.git ."
-            sh "git clone https://github.com/119Vik/magma-1.git ."
+            // sh "git clone https://github.com/119Vik/magma-1.git ."
+            checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '${sha1}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'vik_github', refspec: '+refs/pull/*:refs/remotes/origin/pr/*', url: 'https://github.com/119Vik/magma-1.git']]]    
             GIT_COMMIT = sh returnStdout: true, script: 'git log -1 --pretty="%H"'
             // echo "Git URL         is ${GIT_URL}"
             // echo "GitLab Act      is ${env.gitlabActionType}"
