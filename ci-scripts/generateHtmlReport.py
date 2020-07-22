@@ -597,6 +597,7 @@ class HtmlReport():
 			service_status = False
 			firstService = False
 			listServices = ''
+			service_name = ''
 			with open(cwd + '/archives/' + logFileName, 'r') as logfile:
 				for line in logfile:
 					result = re.search(pattern_module, line)
