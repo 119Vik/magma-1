@@ -22,7 +22,7 @@
 
 
 // def GIT_URL = "github.com/magma/magma"
-def GIT_URL = "github.com/119Vik/magma-1"
+def GIT_URL = "github.com/magma/magma"
 
 def GIT_BRANCH = "master"
 def GIT_COMMIT
